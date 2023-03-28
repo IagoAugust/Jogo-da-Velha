@@ -1,0 +1,69 @@
+  /*=== GERAL =================================*/
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+  }
+
+  :root {
+
+    font-size: 62.5%;  /* 1rem = 10px */
+  }
+
+  h1 {
+    margin: 2rem;
+    font-size: 3.9rem;
+  }
+
+  form {
+    width: 80vw;
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-bottom: 1.6rem; 
+  }
+
+  .namePlayers {
+    width: 80vw;
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+  }
+
+  .namePlayers div {
+    padding: .8rem;
+    border: .2rem solid #000;
+  }
+
+  .namePlayers .selected {
+    background-color: #e6e1e1;
+    border: .2rem dashed #444;
+  }
+
+  .board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 30rem;
+    height: 30rem;
+    margin: 0 auto;
+  }
+  .square {
+    width: 10rem;
+    height: 10rem;
+    font-size: 7.2rem;
+    text-align: center;
+    line-height: 10rem;
+    border: .2rem solid #333;
+    box-sizing: border-box;
+  }
+  .square:hover {
+    background-color: #eee;
+  }
+
+  .win {
+    background-color: yellow;
+  }

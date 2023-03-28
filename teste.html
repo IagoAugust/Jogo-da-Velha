@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jogo da Velha</title>
+    <style>
+      /* Estilos para a grade do jogo */
+      .board {
+        display: flex;
+        flex-wrap: wrap;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+      }
+      .square {
+        width: 100px;
+        height: 100px;
+        font-size: 72px;
+        text-align: center;
+        line-height: 100px;
+        border: 2px solid #333;
+        box-sizing: border-box;
+      }
+      .square:hover {
+        background-color: #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Jogo da Velha</h1>
+    <div class="board"></div>
+    <script>
+      // Cria um array para representar o tabuleiro
+      let board = ['', '', '', '', '', '', '', '', ''];
+      // Cria um array para armazenar os elementos da grade
+      let squares = [];
+      // Cria um elemento div para cada quadrado na grade
+      for (let i = 0; i < 9; i++) {
+        let square = document.createElement('div');
+        square.classList.add('square');
+        square.setAttribute('id', i);
+        square.addEventListener('click', function() {
+          // Adiciona 'X' ou 'O' no quadrado clicado
+          if (board[i] === '') {
+            board[i] = currentPlayer;
+            square.textContent = currentPlayer;
+            checkForWin();
+            // Alterna entre jogadores
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+          }
+        });
+        // Adiciona cada quadrado à grade
+        squares.push(square);
+        document.querySelector('.board').appendChild(square);
+      }
+      // Cria uma variável para controlar o jogador atual
+      let currentPlayer = 'X';
+      // Cria uma função para verificar se há um vencedor
+      function checkForWin() {
+        const winningCombos = [
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8],
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8],
+          [0, 4, 8],
+          [2, 4, 6]
+        ];
+        for (let i = 0; i < winningCombos.length; i++) {
+          const [a, b, c] = winningCombos[i];
+          if (board[a] !== '' && board[a] === board[b] && board[b] === board[c]) {
+            alert('O jogador ' + currentPlayer + ' venceu!');
+            resetGame();
+          }
+        }
+        // Verifica se houve empate
+        if (board.every(square => square !== '')) {
+          alert('Empate!');
+          resetGame();
+        }
+      }
+      // Cria uma função para reiniciar o jogo
+      function resetGame() {
+        board = ['', '', '', '', '', '', '', '', ''];
+        currentPlayer = 'X';
+        squares.forEach(square => (square.textContent = ''));
+      }
+    </script>
+  </body>
+</html>
